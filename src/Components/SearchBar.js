@@ -1,6 +1,16 @@
 import React from 'react';
 
 class SearchBar extends React.Component {
+	state = {
+		term: ''
+	};
+
+	onInputChange = (event) => {
+		this.setState({
+			term: event.target.value
+		});
+	}
+
 	render() {
 		return (
 			<div className="ui segment">
@@ -8,7 +18,9 @@ class SearchBar extends React.Component {
 					<div className="field">
 						<label>Video Search</label>
 						<input 
-							type="text" placeholder="Search for a Youtube video.." 
+							type="text" placeholder="Search for a Youtube video.."
+							value={this.state.term}
+							onChange={this.onInputChange} 
 						/>
 					</div>
 				</form>
