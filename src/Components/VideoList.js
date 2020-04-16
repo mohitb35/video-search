@@ -10,7 +10,7 @@ function createList(videoArray) {
 
 const VideoList = (props) => {
 	return (
-		<div>
+		<div className="ui relaxed divided list">
 			{createList(props.videos)}
 		</div>
 	)
