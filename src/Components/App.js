@@ -6,6 +6,7 @@ import youtube from '../apis/youtube';
 
 import SearchBar from './SearchBar';
 import VideoList from './VideoList';
+import VideoDetail from './VideoDetail';
 
 
 class App extends React.Component {
@@ -27,7 +28,8 @@ class App extends React.Component {
 			});
 
 			this.setState({
-				videos: results.data.items
+				videos: results.data.items,
+				selectedVideo: results.data.items[0]
 			});
 		} catch(error) {
 			console.log(error);
@@ -44,8 +46,17 @@ class App extends React.Component {
 		return (
 			<div className="ui container">
 				<SearchBar onSubmit={this.onSearchSubmit}/> 
-				<p>{this.state.videos.length} videos found.</p>
-				<VideoList videos={this.state.videos} onVideoSelect={this.onVideoSelect}/>
+				<div className="ui grid">
+					<div className="ui row">
+						<div className="eleven wide column" >
+							<VideoDetail video={this.state.selectedVideo} />
+						</div>
+						<div className="five wide column" >
+							<p className="ui segment">{this.state.videos.length} videos found.</p>
+							<VideoList videos={this.state.videos} onVideoSelect={this.onVideoSelect}/>
+						</div>
+					</div>
+				</div>
 			</div>
 		)
 	}

@@ -17,8 +17,6 @@ import './VideoItem.css';
 
 
 const VideoItem = ({ video, onVideoSelect }) => {
-	console.log(video);
-
 	return <div className="item video-item" onClick={ () => onVideoSelect(video) }>
 		<div className="image">
 			<img src={video.snippet.thumbnails.default.url} alt={video.snippet.description}/>
