@@ -10,7 +10,8 @@ import VideoList from './VideoList';
 
 class App extends React.Component {
 	state = {
-		videos: []
+		videos: [],
+		selectedVideo: null
 	}
 
 	onSearchSubmit = async (term) => {
@@ -33,12 +34,18 @@ class App extends React.Component {
 		}
 	}
 
+	onVideoSelect = (video) => {
+		this.setState({
+			selectedVideo: video
+		});
+	}
+
 	render() {
 		return (
 			<div className="ui container">
 				<SearchBar onSubmit={this.onSearchSubmit}/> 
 				<p>{this.state.videos.length} videos found.</p>
-				<VideoList videos={this.state.videos}/>
+				<VideoList videos={this.state.videos} onVideoSelect={this.onVideoSelect}/>
 			</div>
 		)
 	}
